@@ -2,48 +2,90 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery</title>
+    <title>Impact Founder VR Exhibit</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.3"></script>
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
     <script src="components/set-image.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene debug>
       <a-assets>
-        <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
-        <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-        <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-        <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+        <img id="city" crossorigin="anonymous" src="/assets/images/city.jpg">
+        <img id="bsw" crossorigin="anonymous" src="/assets/images/bswLogo.png">
+        <img id="TimWolters" crossorigin="anonymous" src="/assets/images/TimWolters.png">
+        <img id="KrystalCovington" crossorigin="anonymous" src="/assets/images/KrystalCovington.png">
+        <img id="KristinDarga" crossorigin="anonymous" src="/assets/images/KristinDarga.png">
+        <img id="JackieRos" crossorigin="anonymous" src="/assets/images/JackieRos.png">
+        <img id="BradFeld" crossorigin="anonymous" src="/assets/images/BradFeld.png">
+        <img id="DaveMayer" crossorigin="anonymous" src="/assets/images/DaveMayer.png">
+        <img id="SarahJaneCoffey" crossorigin="anonymous" src="/assets/images/SarahJaneCoffey.png">
+        <img id="DaveMayer" crossorigin="anonymous" src="/assets/images/DaveMayer.png">
+        <img id="MikeBiselli" crossorigin="anonymous" src="/assets/images/MikeBiselli.png">
+        <img id="TomaBedolla" crossorigin="anonymous" src="/assets/images/TomaBedolla.png">
+        <img id="SamuelTarantino" crossorigin="anonymous" src="/assets/images/SamuelTarantino.png">
+        <img id="KristaMorgan" crossorigin="anonymous" src="/assets/images/KristaMorgan.png">
+        <audio id="MikeBiselliAudio" class="audio" crossorigin="anonymous" src="/assets/audio/MikeBiselli.mp3" preload="auto"></audio>
+        <audio id="BradFeldAudio" class="audio" crossorigin="anonymous" src="/assets/audio/BradFeld.mp3" preload="auto"></audio>
+        <audio id="DaveMayerAudio" class="audio" crossorigin="anonymous" src="/assets/audio/DaveMayer.mp3" preload="auto"></audio>
+        <audio id="KristaMorganAudio" class="audio" crossorigin="anonymous" src="/assets/audio/KristaMorgan.mp3" preload="auto"></audio>
+        <audio id="KrystalCovingtonAudio" class="audio" crossorigin="anonymous" src="/assets/audio/KrystalCovington.mp3" preload="auto"></audio>
+        <audio id="SamuelTarantinoAudio" class="audio" crossorigin="anonymous" src="/assets/audio/SamuelTarantino.mp3" preload="auto"></audio>
+        <audio id="TomaBedollaAudio" class="audio" crossorigin="anonymous" src="/assets/audio/TomaBedolla.mp3" preload="auto"></audio>
+        <audio id="click-sound" class="audio" crossorigin="anonymous" src="/assets/audio/click.ogg"></audio>
 
-        <!-- Image link template to be reused. -->
-        <script id="link" type="text/html">
-          <a-entity class="link"
-            geometry="primitive: plane; height: 1; width: 1"
+        <script id="logo" type="text/html">
+          <a-entity class="logo"
+            geometry="primitive: plane; height: 1.75; width: 7"
+            material="shader: flat; src: ${thumb}"
+          </a-entity>
+        </script>
+
+        <script id="audiolink" type="text/html">
+          <a-entity class="audiolink" id="soundEntity"
+            geometry="primitive: plane; height: 1.5; width: 3"
             material="shader: flat; src: ${thumb}"
             event-set__1="_event: mousedown; scale: 1 1 1"
             event-set__2="_event: mouseup; scale: 1.2 1.2 1"
             event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
             event-set__4="_event: mouseleave; scale: 1 1 1"
-            set-image="on: click; target: #image-360; src: ${src}"
-            sound="on: click; src: #click-sound"></a-entity>
+            sound="on: click; src: ${sound};"></a-entity>
+        </script>
+
+        <script id="link" type="text/html">
+          <a-entity class="link"
+            position="0 -2 0"
+            geometry="primitive: plane; height: 1.5; width: 3"
+            material="shader: flat; src: ${thumb}"></a-entity>
         </script>
       </a-assets>
 
       <!-- 360-degree image. -->
       <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
-      <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+      <!-- Logo -->
+      <a-entity template="src: #logo" id="logo" position="0 4 -6" light="type: spot; angle: 45" data-thumb="#bsw"></a-entity>
+
+      <!-- Audio Link Images -->
+      <a-entity id="audiolink" layout="type: circle; radius: 4; thetaLength: 360" position:"0 0 2">
+        <a-entity template="src: #audiolink" data-sound="#KrystalCovingtonAudio" data-thumb="#KrystalCovington" rotation="0 -70 0"></a-entity>
+        <a-entity template="src: #audiolink" data-sound="#BradFeldAudio" data-thumb="#BradFeld" rotation="0 -120 0"></a-entity>
+        <a-entity template="src: #audiolink" data-sound="#DaveMayerAudio" data-thumb="#DaveMayer" rotation="0 -180 0"></a-entity>
+        <a-entity template="src: #audiolink" data-sound="#MikeBiselliAudio" data-thumb="#MikeBiselli" rotation="0 95 0"></a-entity>
+        <a-entity template="src: #audiolink" data-sound="#SamuelTarantinoAudio" data-thumb="#SamuelTarantino" rotation="0 60 0"></a-entity>
+        <a-entity template="src: #audiolink" data-sound="#TomaBedollaAudio" data-thumb="#TomaBedolla" rotation="0 20 0"></a-entity>
+        <a-entity template="src: #audiolink" data-sound="#KristaMorganAudio" data-thumb="#KristaMorgan" rotation="0 -45 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="link" layout="type: circle; radius: 4; thetaLength: 360" position:"-3 -6 2" >
+        <a-entity template="src: #link" data-thumb="#TimWolters" rotation="-20 -80 -5"></a-entity>
+        <a-entity template="src: #link" data-thumb="#KristinDarga" rotation="-20 -160 -5"></a-entity>
+        <a-entity template="src: #link" data-thumb="#JackieRos" rotation="-20 140 -5"></a-entity>
+        <a-entity template="src: #link" data-thumb="#DaveMayer" rotation="-20 60 -5"></a-entity>
+        <a-entity template="src: #link" data-thumb="#SarahJaneCoffey" rotation="-20 -20 -5"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
@@ -54,7 +96,7 @@
           event-set__1="_event: mouseenter; color: springgreen"
           event-set__2="_event: mouseleave; color: black"
           fuse="true"
-          raycaster="objects: .link"></a-cursor>
+          raycaster="objects: .audiolink"></a-cursor>
       </a-entity>
     </a-scene>
   </body>
