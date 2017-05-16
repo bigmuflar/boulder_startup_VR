@@ -3,10 +3,13 @@
   "version": "0.3.0-beta6",
   "license": "MIT",
   "scripts": {
-    "start": "http-server"
+    "start": "budo --live --verbose --port 8080 --open",
+    "deploy": "ghpages",
+    "ghpages": "ghpages"
   },
   "devDependencies": {
-    "http-server": "^0.10.0"
+    "budo": "^10.0.3",
+    "ghpages": "0.0.10"
   },
   "keywords": [
     "aframe",
@@ -16,7 +19,5 @@
     "vr",
     "webvr"
   ],
-  "dependencies": {
-    "aframe": "^0.5.0"
-  }
+  "dependencies": {}
 }
