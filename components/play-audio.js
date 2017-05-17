@@ -2,7 +2,7 @@
 AFRAME.registerComponent('play-audio', {
   schema: {
     src: {type: 'selector'},
-    on: {default: 'click'}
+    on: {default: 'mouseenter'}
   },
   init: function () {
     var data = this.data;
