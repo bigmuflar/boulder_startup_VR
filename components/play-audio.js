@@ -13,7 +13,7 @@ AFRAME.registerComponent('play-audio', {
       for (var i = 0; i < audioEls.length; i++) {
         if (!audioEls[i].paused) { audioEls[i].pause(); }
       }
-      data.src.noteOn(0);;
+      data.src.play();
     });
   }
 });
