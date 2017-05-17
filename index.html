@@ -5,11 +5,12 @@
     <title>Impact Founder VR Exhibit</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.2.5"></script>
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.3"></script>
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
-    <script src="components/set-image.js"></script>
+    <script src="components/play-audio.js"></script>
+    <script src="components/play-audio.js"></script>
   </head>
   <body>
     <a-scene debug>
@@ -52,7 +53,7 @@
             event-set__2="_event: mouseup; scale: 1.2 1.2 1"
             event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
             event-set__4="_event: mouseleave; scale: 1 1 1"
-            sound="on: click; src: ${sound};"></a-entity>
+            play-audio="on: click; src: ${sound};"></a-entity>
         </script>
 
         <script id="link" type="text/html">
